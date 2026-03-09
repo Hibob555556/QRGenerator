@@ -11,3 +11,6 @@ __pycache__/
 # Images
 *.png
 !images/*.png
+
+# vscode
+.vscode/
