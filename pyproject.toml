@@ -47,3 +47,4 @@ py-modules = ["qrgen"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+

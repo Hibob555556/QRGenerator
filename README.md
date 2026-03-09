@@ -3,7 +3,6 @@
 [![CI](https://github.com/Hibob555556/QRGenerator/actions/workflows/ci.yml/badge.svg)](https://github.com/Hibob555556/QRGenerator/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/github/license/Hibob555556/QRGenerator?style=flat-square&v=2)](https://github.com/Hibob555556/QRGenerator/blob/main/LICENSE)
 
-
 ![TUI screenshot](images/screenshot.png)
 
 Generate URL QR codes as PNG files using either:
@@ -14,8 +13,8 @@ Generate URL QR codes as PNG files using either:
 ## Quick Start
 
 ```powershell
-pip install -r requirements.txt
-python .\qrgen.py https://example.com --output qr.png --scale 10
+pip install QuickQRForge
+qrgen https://example.com --output qr.png --scale 10
 ```
 
 ## Features
@@ -28,10 +27,16 @@ python .\qrgen.py https://example.com --output qr.png --scale 10
 
 ## Installation
 
+Install from PyPI:
+
 ```powershell
-git clone https://github.com/Hibob555556/QRGenerator.git
-cd QRGenerator
-pip install -r requirements.txt
+pip install QuickQRForge
+```
+
+Optional: install/upgrade to the latest release:
+
+```powershell
+pip install --upgrade QuickQRForge
 ```
 
 ## Usage
@@ -39,13 +44,13 @@ pip install -r requirements.txt
 ### TUI Mode
 
 ```powershell
-python .\qrgen.py
+qrgen
 ```
 
 Or:
 
 ```powershell
-python .\qrgen.py --tui
+qrgen --tui
 ```
 
 ### CLI Mode
@@ -53,13 +58,55 @@ python .\qrgen.py --tui
 Positional URL:
 
 ```powershell
-python .\qrgen.py https://example.com
+qrgen https://example.com
 ```
 
 Flag-based URL:
 
 ```powershell
-python .\qrgen.py --url https://example.com --output qr.png --scale 10
+qrgen --url https://example.com --output qr.png --scale 10
+```
+
+## Example Usage
+
+Generate `qr.png` from a URL using defaults:
+
+```powershell
+qrgen https://example.com
+```
+
+Generate a QR code with a custom file name and scale:
+
+```powershell
+qrgen https://openai.com --output openai-qr.png --scale 12
+```
+
+Use the flag-based URL argument (useful in scripts):
+
+```powershell
+qrgen --url https://github.com --output github.png --scale 8
+```
+
+Start in interactive TUI mode:
+
+```powershell
+qrgen --tui
+```
+
+## Use in Python Code
+
+This project is packaged as a CLI tool. To use it inside your Python code, call the `qrgen` command with `subprocess`:
+
+```python
+import subprocess
+
+def make_qr(url: str, output: str = "qr.png", scale: int = 10) -> None:
+    subprocess.run(
+        ["qrgen", url, "--output", output, "--scale", str(scale)],
+        check=True,
+    )
+
+make_qr("https://example.com", "example-qr.png", 12)
 ```
 
 ## CLI Arguments
@@ -76,6 +123,14 @@ python .\qrgen.py --url https://example.com --output qr.png --scale 10
 - `1`: error (invalid input or generation failure)
 
 ## Development
+
+Install from source:
+
+```powershell
+git clone https://github.com/Hibob555556/QRGenerator.git
+cd QRGenerator
+pip install -e .
+```
 
 Run tests:
 
