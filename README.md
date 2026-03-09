@@ -1,7 +1,7 @@
 # QRGenerator
 
 [![CI](https://github.com/Hibob555556/QRGenerator/actions/workflows/ci.yml/badge.svg)](https://github.com/Hibob555556/QRGenerator/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/github/license/Hibob555556/QRGenerator?style=flat-square)](./LICENSE)
+[![License: MIT](https://img.shields.io/github/license/Hibob555556/QRGenerator?style=flat-square&v=2)](https://github.com/Hibob555556/QRGenerator/blob/main/LICENSE)
 
 
 ![TUI screenshot](images/screenshot.png)
