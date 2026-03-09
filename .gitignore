@@ -1,0 +1,12 @@
+# Python
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
+
+# Pytest
+__pycache__/
+.pytest_cache/
+
+# Images
+*.png
