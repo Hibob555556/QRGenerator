@@ -1,10 +1,10 @@
-﻿[build-system]
+[build-system]
 requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "qrgenerator"
-version = "0.1.0"
+name = "QuickQRForge"
+version = "1.0.0"
 description = "Terminal and CLI QR code generator for URLs."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -44,6 +44,7 @@ qrgen = "qrgen:main"
 [tool.setuptools]
 packages = []
 py-modules = ["qrgen"]
+
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -14,12 +14,8 @@ __pycache__/
 
 # vscode
 .vscode/
-# Packaging artifacts
-dist/
-build/
-*.egg-info/
 
-# PyPI / packaging artifacts
+# pypi
 build/
 dist/
 *.egg-info/
@@ -34,18 +30,3 @@ venv/
 env/
 ENV/
 Lib/
-Include/
-Scripts/
-pyvenv.cfg
-
-# Test and coverage outputs
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-
-# Tool caches
-.mypy_cache/
-.ruff_cache/
-.tox/
-.nox/
