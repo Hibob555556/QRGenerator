@@ -28,6 +28,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest
+          # ensure the package under test is available to import
+          pip install -e .
 
       - name: Run tests
         run: pytest -q
