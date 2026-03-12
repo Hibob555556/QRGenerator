@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to QRGenerator.
+Thanks for contributing to QuickQRForge.
 
 ## Local Setup
 

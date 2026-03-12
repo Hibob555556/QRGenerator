@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "QuickQRForge"
-version = "1.0.0"
+version = "1.2.0"
 description = "Terminal and CLI QR code generator for URLs."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -28,8 +28,8 @@ classifiers = [
   "Programming Language :: Python :: 3.12"
 ]
 dependencies = [
-  "PyQRCode",
-  "pypng"
+  "qrcode",          # the library actually imported by qrgen.py
+  "pillow",          # required by qrcode for image generation
 ]
 
 [project.urls]
@@ -39,12 +39,14 @@ Issues = "https://github.com/Hibob555556/QRGenerator/issues"
 Changelog = "https://github.com/Hibob555556/QRGenerator/blob/main/CHANGELOG.md"
 
 [project.scripts]
-qrgen = "qrgen:main"
+qrgen = "quickqrforge:main"  # primary CLI entry point (module renamed)
+qr = "quickqrforge:main"     # convenient short alias
 
 [tool.setuptools]
 packages = []
-py-modules = ["qrgen"]
-
+# we provide both names for backwards compatibility; setuptools will build
+# both .py files as standalone modules.
+py-modules = ["quickqrforge", "qrgen"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
