@@ -1,2 +1,2 @@
-PyQRCode
-pypng
+qrcode
+pillow

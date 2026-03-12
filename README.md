@@ -1,4 +1,4 @@
-# QRGenerator
+# QuickQRForge
 
 [![CI](https://github.com/Hibob555556/QRGenerator/actions/workflows/ci.yml/badge.svg)](https://github.com/Hibob555556/QRGenerator/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/github/license/Hibob555556/QRGenerator?style=flat-square&v=2)](https://github.com/Hibob555556/QRGenerator/blob/main/LICENSE)
@@ -10,11 +10,17 @@ Generate URL QR codes as PNG files using either:
 - an interactive terminal UI (TUI), or
 - a script-friendly command-line interface (CLI).
 
+> The CLI is exposed via the `qrgen` command once the package is installed
+> from PyPI; no additional setup is necessary.
+
 ## Quick Start
 
 ```powershell
 pip install QuickQRForge
+# after installing you can use either the full name or the short alias
 qrgen https://example.com --output qr.png --scale 10
+# or simply
+qr https://example.com --output qr.png --scale 10
 ```
 
 ## Features
@@ -27,11 +33,14 @@ qrgen https://example.com --output qr.png --scale 10
 
 ## Installation
 
-Install from PyPI:
+Install from PyPI (dependencies are handled automatically):
 
 ```powershell
 pip install QuickQRForge
 ```
+
+> After installation a cross‑platform `qrgen` executable script will be placed
+> on your PATH, allowing you to run the utility directly from the shell.
 
 Optional: install/upgrade to the latest release:
 
@@ -43,14 +52,18 @@ pip install --upgrade QuickQRForge
 
 ### TUI Mode
 
-```powershell
-qrgen
-```
+By default the command launches a simple screen-based interface using the
+standard library ``curses`` module.  You can tab between fields and press
+Enter when finished – it looks like a little form rather than a sequence of
+prompts.
 
-Or:
+If ``curses`` isn't available (for example, on stock Windows installs) the
+package gracefully falls back to a line-by-line prompt instead; no additional
+dependencies are required, though installing ``windows-curses`` will enable
+the full screen UI on Windows.
 
 ```powershell
-qrgen --tui
+qrgen        # or: qrgen --tui
 ```
 
 ### CLI Mode
@@ -95,20 +108,25 @@ qrgen --tui
 
 ## Use in Python Code
 
-This project is packaged as a CLI tool. To use it inside your Python code, call the `qrgen` command with `subprocess`:
+The library can be imported directly in Python.  The public API originally
+lived in the ``qrgen`` module, but the package was renamed and the canonical
+import path is now ``quickqrforge``.  The old module still exists and issues a
+``DeprecationWarning`` when imported, so you can update at your leisure.
+
+```python
+import quickqrforge as qrf
+
+qrf.generate_qr("https://example.com", "example.png")
+```
+
+You can still use the CLI via ``subprocess`` if you prefer:
 
 ```python
 import subprocess
 
-def make_qr(url: str, output: str = "qr.png", scale: int = 10) -> None:
-    subprocess.run(
-        ["qrgen", url, "--output", output, "--scale", str(scale)],
-        check=True,
-    )
-
-make_qr("https://example.com", "example-qr.png", 12)
-```
-
+subprocess.run([
+    "qrgen", "https://example.com", "--output", "example.png", "--scale", "12"
+], check=True)
 ## CLI Arguments
 
 - `url_pos` (optional positional): URL to encode
@@ -127,8 +145,8 @@ make_qr("https://example.com", "example-qr.png", 12)
 Install from source:
 
 ```powershell
-git clone https://github.com/Hibob555556/QRGenerator.git
-cd QRGenerator
+git clone https://github.com/Hibob555556/QRGenerator.git  # repo name remains for now
+cd QRGenerator   # directory name unchanged after clone
 pip install -e .
 ```
 
