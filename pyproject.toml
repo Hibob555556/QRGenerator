@@ -50,3 +50,4 @@ py-modules = ["quickqrforge", "qrgen"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+

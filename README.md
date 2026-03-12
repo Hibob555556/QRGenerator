@@ -17,10 +17,7 @@ Generate URL QR codes as PNG files using either:
 
 ```powershell
 pip install QuickQRForge
-# after installing you can use either the full name or the short alias
 qrgen https://example.com --output qr.png --scale 10
-# or simply
-qr https://example.com --output qr.png --scale 10
 ```
 
 ## Features
@@ -33,14 +30,11 @@ qr https://example.com --output qr.png --scale 10
 
 ## Installation
 
-Install from PyPI (dependencies are handled automatically):
+Install from PyPI:
 
 ```powershell
 pip install QuickQRForge
 ```
-
-> After installation a cross‑platform `qrgen` executable script will be placed
-> on your PATH, allowing you to run the utility directly from the shell.
 
 Optional: install/upgrade to the latest release:
 
@@ -52,18 +46,14 @@ pip install --upgrade QuickQRForge
 
 ### TUI Mode
 
-By default the command launches a simple screen-based interface using the
-standard library ``curses`` module.  You can tab between fields and press
-Enter when finished – it looks like a little form rather than a sequence of
-prompts.
+```powershell
+qrgen
+```
 
-If ``curses`` isn't available (for example, on stock Windows installs) the
-package gracefully falls back to a line-by-line prompt instead; no additional
-dependencies are required, though installing ``windows-curses`` will enable
-the full screen UI on Windows.
+Or:
 
 ```powershell
-qrgen        # or: qrgen --tui
+qrgen --tui
 ```
 
 ### CLI Mode
@@ -92,6 +82,34 @@ Generate a QR code with a custom file name and scale:
 
 ```powershell
 qrgen https://openai.com --output openai-qr.png --scale 12
+```
+
+Use the flag-based URL argument (useful in scripts):
+
+```powershell
+qrgen --url https://github.com --output github.png --scale 8
+```
+
+Start in interactive TUI mode:
+
+```powershell
+qrgen --tui
+```
+
+## Use in Python Code
+
+This project is packaged as a CLI tool. To use it inside your Python code, call the `qrgen` command with `subprocess`:
+
+```python
+import subprocess
+
+def make_qr(url: str, output: str = "qr.png", scale: int = 10) -> None:
+    subprocess.run(
+        ["qrgen", url, "--output", output, "--scale", str(scale)],
+        check=True,
+    )
+
+make_qr("https://example.com", "example-qr.png", 12)
 ```
 
 Use the flag-based URL argument (useful in scripts):
@@ -145,8 +163,8 @@ subprocess.run([
 Install from source:
 
 ```powershell
-git clone https://github.com/Hibob555556/QRGenerator.git  # repo name remains for now
-cd QRGenerator   # directory name unchanged after clone
+git clone https://github.com/Hibob555556/QRGenerator.git
+cd QRGenerator
 pip install -e .
 ```
 
